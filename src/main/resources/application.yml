@@ -29,9 +29,10 @@ app:
     expiration:
       minutes: 10
   oauth2:
-    redirectUri: http://localhost:3000/oauth2/redirect
+    redirectUri: https://wishmagic-client-production.up.railway.app/oauth2/redirect
   cors:
-    allowed-origins: http://localhost:3000
+    allowed-origins: https://wishmagic-client-production.up.railway.app/
+
 
 logging:
   level:
