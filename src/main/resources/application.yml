@@ -5,9 +5,9 @@ spring:
     hibernate:
       ddl-auto: create
   datasource:
-    url: jdbc:postgresql://localhost:5432/wishlist
-    username: ganna
-    password: ganna
+    url: jdbc:postgresql://${PGHOST}:${PGPORT}/${PGDATABASE}
+    username: ${PGUSER}
+    password: ${PGPASSWORD}
   security:
     oauth2:
       client:
@@ -29,9 +29,9 @@ app:
     expiration:
       minutes: 10
   oauth2:
-    redirectUri: http://localhost:3000/oauth2/redirect
+    redirectUri: https://wishmagic-client-production.up.railway.app/oauth2/redirect
   cors:
-    allowed-origins: http://localhost:3000
+    allowed-origins: https://wishmagic-client-production.up.railway.app/
 
 logging:
   level:
