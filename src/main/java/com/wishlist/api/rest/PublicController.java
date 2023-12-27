@@ -3,10 +3,7 @@ package com.wishlist.api.rest;
 import com.wishlist.api.model.WishScrapped;
 import com.wishlist.api.service.UserService;
 import com.wishlist.api.service.WishScrapperService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/public")
@@ -22,6 +19,10 @@ public class PublicController {
         this.wishScrapper = wishScrapper;
     }
 
+    @GetMapping
+    public String checkStatus() {
+        return "Hello!";
+    }
     @GetMapping("/scrappingFromUrl")
     public WishScrapped scrappingFromUrl(@RequestParam String url) {
         return wishScrapper.getInfoFromUrl(url);

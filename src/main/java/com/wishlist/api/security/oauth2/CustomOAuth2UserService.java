@@ -1,9 +1,12 @@
 package com.wishlist.api.security.oauth2;
 
 import com.wishlist.api.model.User;
+import com.wishlist.api.model.Wishlist;
 import com.wishlist.api.security.CustomUserDetails;
 import com.wishlist.api.security.WebSecurityConfig;
 import com.wishlist.api.service.UserService;
+import com.wishlist.api.service.WishlistService;
+import com.wishlist.api.service.WishlistServiceImpl;
 import org.springframework.security.authentication.InternalAuthenticationServiceException;
 import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;
 import org.springframework.security.oauth2.client.userinfo.OAuth2UserRequest;
@@ -17,11 +20,15 @@ import java.util.Optional;
 public class CustomOAuth2UserService extends DefaultOAuth2UserService {
 
     private final UserService userService;
+
+    private final WishlistService wishlistService;
     private final List<OAuth2UserInfoExtractor> oAuth2UserInfoExtractors;
 
-    public CustomOAuth2UserService(UserService userService, List<OAuth2UserInfoExtractor> oAuth2UserInfoExtractors) {
+    public CustomOAuth2UserService(UserService userService, List<OAuth2UserInfoExtractor> oAuth2UserInfoExtractors,
+                                   WishlistService wishlistService) {
         this.userService = userService;
         this.oAuth2UserInfoExtractors = oAuth2UserInfoExtractors;
+        this.wishlistService = wishlistService;
     }
 
     @Override
@@ -37,7 +44,11 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
 
         CustomUserDetails customUserDetails = oAuth2UserInfoExtractorOptional.get().extractUserInfo(oAuth2User);
         User user = upsertUser(customUserDetails);
-        customUserDetails.setId(user.getId());
+        Long userId = user.getId();
+        customUserDetails.setId(userId);
+        if (!this.wishlistService.userHasWishlist(userId)) {
+            this.wishlistService.createDefaultWishlist(userId);
+        }
         return customUserDetails;
     }
 

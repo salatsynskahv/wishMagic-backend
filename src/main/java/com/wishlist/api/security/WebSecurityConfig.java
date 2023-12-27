@@ -2,6 +2,7 @@ package com.wishlist.api.security;
 
 import com.wishlist.api.security.oauth2.CustomAuthenticationSuccessHandler;
 import com.wishlist.api.security.oauth2.CustomOAuth2UserService;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -49,7 +50,10 @@ public class WebSecurityConfig {
                         .userInfoEndpoint().userService(customOauth2UserService)
                         .and()
                         .successHandler(customAuthenticationSuccessHandler))
-                .logout(l -> l.logoutSuccessUrl("/").permitAll())
+                .logout(logout -> logout.permitAll()
+                        .logoutSuccessHandler((request, response, authentication) -> {
+                            response.setStatus(HttpServletResponse.SC_OK);
+                        }))
                 .addFilterBefore(tokenAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
                 .sessionManagement(sessionManagement -> sessionManagement.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .exceptionHandling(exceptionHandling -> exceptionHandling.authenticationEntryPoint(new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED)))

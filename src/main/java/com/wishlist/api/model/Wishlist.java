@@ -2,11 +2,13 @@ package com.wishlist.api.model;
 
 
 import jakarta.persistence.*;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Date;
+
 @Data
-@NoArgsConstructor
 @Entity
 @Table(name = "wishlists")
 public class Wishlist {

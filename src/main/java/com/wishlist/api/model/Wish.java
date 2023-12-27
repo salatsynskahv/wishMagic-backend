@@ -2,9 +2,11 @@ package com.wishlist.api.model;
 
 
 import jakarta.persistence.*;
+import lombok.Data;
 
 import java.math.BigDecimal;
 
+@Data
 @Entity
 @Table(name = "wishes")
 public class Wish {
@@ -12,11 +14,11 @@ public class Wish {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private int id;
+    private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "wishlistId", nullable = false)
-    private Wishlist wishlist;
+
+    @Column(name = "wishlist_id", nullable = false)
+    private Long wishlistId;
 
     @Column(name = "name", nullable = false, length = 255)
     private String name;
@@ -35,8 +37,8 @@ public class Wish {
     public Wish() {
     }
 
-    public Wish(Wishlist wishlist, String name, String link, BigDecimal price) {
-        this.wishlist = wishlist;
+    public Wish(Long wishlistId, String name, String link, BigDecimal price) {
+        this.wishlistId = wishlistId;
         this.name = name;
         this.link = link;
         this.price = price;

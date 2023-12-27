@@ -1,14 +1,14 @@
-package com.wishlist.api.rest.dto;
+package com.wishlist.api.rest;
 
 
 import com.wishlist.api.model.Wish;
 import com.wishlist.api.repository.WishRepository;
+import com.wishlist.api.service.WishService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 import static com.wishlist.api.config.SwaggerConfig.BEARER_KEY_SECURITY_SCHEME;
 
@@ -16,15 +16,29 @@ import static com.wishlist.api.config.SwaggerConfig.BEARER_KEY_SECURITY_SCHEME;
 @RequestMapping("/api/wishItem")
 public class WishController {
 
-    private WishRepository wishRepository;
+    private WishService wishService;
 
-    public WishController(WishRepository wishRepository) {
-        this.wishRepository = wishRepository;
+    public WishController(WishService wishService) {
+        this.wishService = wishService;
     }
 
     @PostMapping
     @Operation(security = {@SecurityRequirement(name = BEARER_KEY_SECURITY_SCHEME)})
     Wish createWish(@RequestBody Wish withItem) {
-        return wishRepository.save(withItem);
+        return this.wishService.create(withItem);
     }
+
+
+    @PatchMapping
+    @Operation(security = {@SecurityRequirement(name = BEARER_KEY_SECURITY_SCHEME)})
+    Wish updateWishItem(@RequestBody Wish wish) {
+        return this.wishService.update(wish);
+    }
+
+
+    @GetMapping("/byWishlist")
+    List<Wish> getWishesByWishlistId(@RequestParam Long wishlistId) {
+        return this.wishService.getListWishesByWishlist(wishlistId);
+    }
+
 }
