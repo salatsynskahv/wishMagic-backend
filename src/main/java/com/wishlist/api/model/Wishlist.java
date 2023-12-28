@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.Date;
+import java.util.List;
 
 @Data
 @Entity
@@ -21,5 +22,6 @@ public class Wishlist {
     private String createdAt;
     private Boolean isPrivate;
     private String status;
-
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "wishlist")
+    private List<Wish> wishes;
 }

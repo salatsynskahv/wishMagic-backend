@@ -1,4 +1,4 @@
-package com.wishlist.api.rest.dto;
+package com.wishlist.api.dto;
 
 public record AuthResponse(String accessToken) {
 }

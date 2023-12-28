@@ -12,7 +12,7 @@ public class WishlistServiceImpl implements WishlistService {
 
     String defaultWishlistName = "My wishlist";
 
-    private WishlistRepository wishlistRepository;
+    final private WishlistRepository wishlistRepository;
 
 
     public WishlistServiceImpl(WishlistRepository wishlistRepository) {
@@ -21,7 +21,8 @@ public class WishlistServiceImpl implements WishlistService {
 
     @Override
     public List<Wishlist> findUsersWishlist(Long userId) {
-        return wishlistRepository.findWishlistByUserId(userId);
+        List<Wishlist> wishlistByUserId = wishlistRepository.findWishlistByUserId(userId);
+        return wishlistByUserId;
     }
 
     public Wishlist createDefaultWishlist(Long userId) {

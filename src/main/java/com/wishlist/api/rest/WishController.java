@@ -2,7 +2,7 @@ package com.wishlist.api.rest;
 
 
 import com.wishlist.api.model.Wish;
-import com.wishlist.api.repository.WishRepository;
+import com.wishlist.api.dto.WishDto;
 import com.wishlist.api.service.WishService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
@@ -24,7 +24,7 @@ public class WishController {
 
     @PostMapping
     @Operation(security = {@SecurityRequirement(name = BEARER_KEY_SECURITY_SCHEME)})
-    Wish createWish(@RequestBody Wish withItem) {
+    Wish createWish(@RequestBody WishDto withItem) {
         return this.wishService.create(withItem);
     }
 

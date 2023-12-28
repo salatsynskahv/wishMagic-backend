@@ -2,7 +2,7 @@ package com.wishlist.api.rest;
 
 import com.wishlist.api.mapper.UserMapper;
 import com.wishlist.api.model.User;
-import com.wishlist.api.rest.dto.UserDto;
+import com.wishlist.api.dto.UserDto;
 import com.wishlist.api.security.CustomUserDetails;
 import com.wishlist.api.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -26,6 +26,7 @@ import static com.wishlist.api.config.SwaggerConfig.BEARER_KEY_SECURITY_SCHEME;
 public class UserController {
 
     private final UserService userService;
+
     private final UserMapper userMapper;
 
     @Operation(security = {@SecurityRequirement(name = BEARER_KEY_SECURITY_SCHEME)})

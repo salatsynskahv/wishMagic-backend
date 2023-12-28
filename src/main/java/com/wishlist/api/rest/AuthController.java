@@ -2,9 +2,9 @@ package com.wishlist.api.rest;
 
 import com.wishlist.api.exception.DuplicatedUserInfoException;
 import com.wishlist.api.model.User;
-import com.wishlist.api.rest.dto.AuthResponse;
-import com.wishlist.api.rest.dto.LoginRequest;
-import com.wishlist.api.rest.dto.SignUpRequest;
+import com.wishlist.api.dto.AuthResponse;
+import com.wishlist.api.dto.LoginRequest;
+import com.wishlist.api.dto.SignUpRequest;
 import com.wishlist.api.security.TokenProvider;
 import com.wishlist.api.security.WebSecurityConfig;
 import com.wishlist.api.security.oauth2.OAuth2Provider;

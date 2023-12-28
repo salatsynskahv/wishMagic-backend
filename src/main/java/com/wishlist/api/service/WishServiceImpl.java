@@ -1,23 +1,25 @@
 package com.wishlist.api.service;
 
+import com.wishlist.api.dto.WishDto;
+import com.wishlist.api.mapper.WishMapper;
 import com.wishlist.api.model.Wish;
 import com.wishlist.api.repository.WishRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 public class WishServiceImpl implements WishService {
 
     private final WishRepository wishRepository;
 
-    public WishServiceImpl(WishRepository wishRepository) {
-        this.wishRepository = wishRepository;
-    }
+    private final WishMapper wishMapper;
 
     @Override
-    public Wish create(Wish wish) {
+    public Wish create(WishDto wishDto) {
+        Wish wish = wishMapper.fromDto(wishDto);
         return wishRepository.save(wish);
     }
 

@@ -1,6 +1,6 @@
 package com.wishlist.api.model;
 
-
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -15,10 +15,9 @@ public class Wish {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
-
-
-    @Column(name = "wishlist_id", nullable = false)
-    private Long wishlistId;
+//
+//    @Column(name = "wishlist_id", nullable = false)
+//    private Long wishlistId;
 
     @Column(name = "name", nullable = false, length = 255)
     private String name;
@@ -34,14 +33,12 @@ public class Wish {
     private String comment;
     // Constructors, getters, and setters
 
-    public Wish() {
-    }
 
-    public Wish(Long wishlistId, String name, String link, BigDecimal price) {
-        this.wishlistId = wishlistId;
-        this.name = name;
-        this.link = link;
-        this.price = price;
-    }
+    @Column(name="imageUrl", nullable = true)
+    private String imageUrl;
 
+    @JsonIgnore
+    @ManyToOne
+//    @JoinColumn(name = "wishlist_id")
+    private Wishlist wishlist;
 }
