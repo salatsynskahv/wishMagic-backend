@@ -3,13 +3,11 @@ spring:
     name: movie-api
   jpa:
     hibernate:
-      ddl-auto: create
+      ddl-auto: create-drop
   datasource:
     url: jdbc:postgresql://${PGHOST}:${PGPORT}/${PGDATABASE}
     username: ${PGUSER}
     password: ${PGPASSWORD}
-
-
 app:
   jwt:
     # Signing key for HS512 algorithm

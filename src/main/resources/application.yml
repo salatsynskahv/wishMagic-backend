@@ -3,7 +3,8 @@ spring:
     name: movie-api
   jpa:
     hibernate:
-      ddl-auto: create
+      ddl-auto: create-drop
+    show-sql: true
   datasource:
     url: jdbc:postgresql://${PGHOST}:${PGPORT}/${PGDATABASE}
     username: ${PGUSER}
@@ -29,9 +30,9 @@ app:
     expiration:
       minutes: 10
   oauth2:
-    redirectUri: https://wishmagic-client-production.up.railway.app/oauth2/redirect
+    redirectUri: https://wishmagic-client-i18n-production.up.railway.app
   cors:
-    allowed-origins: https://wishmagic-client-production.up.railway.app/
+    allowed-origins: http://localhost:3000
 
 logging:
   level:
