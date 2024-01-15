@@ -30,7 +30,7 @@ app:
     expiration:
       minutes: 10
   oauth2:
-    redirectUri: https://wishmagic-client-i18n-production.up.railway.app/oauth2/redirect
+    redirectUri: https://wishmagic-client-i18n-production.up.railway.app
   cors:
     allowed-origins: https://wishmagic-client-i18n-production.up.railway.app
 
