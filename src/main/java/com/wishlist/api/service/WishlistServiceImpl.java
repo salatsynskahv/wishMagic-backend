@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class WishlistServiceImpl implements WishlistService {
@@ -42,6 +43,11 @@ public class WishlistServiceImpl implements WishlistService {
     @Override
     public Boolean userHasWishlist(Long userId) {
         return this.wishlistRepository.findFirstByUserId(userId).isPresent();
+    }
+
+    @Override
+    public Optional<Wishlist> findWishlistById(Long wishlistId) {
+        return this.wishlistRepository.findById(wishlistId);
     }
 
 }

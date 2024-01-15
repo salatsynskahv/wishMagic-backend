@@ -20,6 +20,7 @@ public class GitHubOAuth2UserInfoExtractor implements OAuth2UserInfoExtractor {
         customUserDetails.setEmail(retrieveAttr("email", oAuth2User));
         customUserDetails.setAvatarUrl(retrieveAttr("avatar_url", oAuth2User));
         customUserDetails.setProvider(OAuth2Provider.GITHUB);
+        customUserDetails.setProviderName("GITHUB");
         customUserDetails.setAttributes(oAuth2User.getAttributes());
         customUserDetails.setAuthorities(Collections.singletonList(new SimpleGrantedAuthority(WebSecurityConfig.USER)));
         return customUserDetails;

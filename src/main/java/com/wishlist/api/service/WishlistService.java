@@ -1,6 +1,7 @@
 package com.wishlist.api.service;
 import com.wishlist.api.model.Wishlist;
 import java.util.List;
+import java.util.Optional;
 
 public interface  WishlistService {
 
@@ -10,5 +11,7 @@ public interface  WishlistService {
     Wishlist createWishlist(Wishlist wishlist);
 
     Boolean userHasWishlist(Long userId);
+
+    Optional<Wishlist> findWishlistById(Long wishlistId);
 
 }

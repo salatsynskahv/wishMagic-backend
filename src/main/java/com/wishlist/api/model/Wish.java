@@ -37,6 +37,9 @@ public class Wish {
     @Column(name="imageUrl", nullable = true)
     private String imageUrl;
 
+    @Column(name="likes", nullable = true)
+    private Integer likes;
+
     @JsonIgnore
     @ManyToOne
 //    @JoinColumn(name = "wishlist_id")

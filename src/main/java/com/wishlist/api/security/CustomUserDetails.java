@@ -21,6 +21,7 @@ public class CustomUserDetails implements OAuth2User, UserDetails {
     private OAuth2Provider provider;
     private Collection<? extends GrantedAuthority> authorities;
     private Map<String, Object> attributes;
+    private String providerName;
 
     @Override
     public boolean isAccountNonExpired() {
