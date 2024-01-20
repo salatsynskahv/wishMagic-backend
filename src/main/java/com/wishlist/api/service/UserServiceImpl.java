@@ -4,6 +4,7 @@ import com.wishlist.api.exception.UserNotFoundException;
 import com.wishlist.api.model.User;
 import com.wishlist.api.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

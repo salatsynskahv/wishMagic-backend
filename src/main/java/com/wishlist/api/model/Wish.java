@@ -15,7 +15,7 @@ public class Wish {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
-//
+
 //    @Column(name = "wishlist_id", nullable = false)
 //    private Long wishlistId;
 
@@ -42,6 +42,5 @@ public class Wish {
 
     @JsonIgnore
     @ManyToOne
-//    @JoinColumn(name = "wishlist_id")
     private Wishlist wishlist;
 }

@@ -1,12 +1,10 @@
 package com.wishlist.api.model;
 
-
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.ToString;
 
-import java.util.Date;
 import java.util.List;
 
 @Data
@@ -22,6 +20,7 @@ public class Wishlist {
     private String createdAt;
     private Boolean isPrivate;
     private String status;
+    @ToString.Exclude
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "wishlist")
     private List<Wish> wishes;
 }
