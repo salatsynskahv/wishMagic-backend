@@ -17,7 +17,8 @@ public class WishScrapperService {
         try {
             Document doc = Jsoup.connect(url).get();
             result.setTitle(doc.title());
-            String price = doc.getElementsByClass(".price_value").text();
+            Elements elementsWithPrice = doc.select("[class*='price']:containsOwn(₴), [class*='price']:containsOwn($), [class*='price']:containsOwn('грн'), span.price-new, span.price");
+            String price = elementsWithPrice.text();
             try {
                 Element imageUrl1 = doc.select(".product-image img").first();
 

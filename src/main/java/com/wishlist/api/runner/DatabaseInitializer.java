@@ -34,8 +34,8 @@ public class DatabaseInitializer implements CommandLineRunner {
 //        log.info("Database initialized");
     }
 
-    private static final List<User> USERS = Arrays.asList(
-            new User("admin", "admin", "Admin", "admin@mycompany.com", WebSecurityConfig.ADMIN, null, OAuth2Provider.LOCAL, "1"),
-            new User("user", "user", "User", "user@mycompany.com", WebSecurityConfig.USER, null, OAuth2Provider.LOCAL, "2")
-    );
+//    private static final List<User> USERS = Arrays.asList(
+//            new User("admin", "admin", "Admin", "admin@mycompany.com", WebSecurityConfig.ADMIN, null, OAuth2Provider.LOCAL, "1"),
+//            new User("user", "user", "User", "user@mycompany.com", WebSecurityConfig.USER, null, OAuth2Provider.LOCAL, "2")
+//    );
 }

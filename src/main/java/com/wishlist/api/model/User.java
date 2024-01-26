@@ -1,21 +1,17 @@
 package com.wishlist.api.model;
 
 import com.wishlist.api.security.oauth2.OAuth2Provider;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-import jakarta.persistence.UniqueConstraint;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import java.util.List;
 
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "users", uniqueConstraints = {
         @UniqueConstraint(columnNames = "username"),
@@ -34,19 +30,11 @@ public class User {
     private String imageUrl;
     private String phoneNumber;
 
+//    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+//    private List<Like> likes;
+
     @Enumerated(EnumType.STRING)
     private OAuth2Provider provider;
 
     private String providerId;
-
-    public User(String username, String password, String name, String email, String role, String imageUrl, OAuth2Provider provider, String providerId) {
-        this.username = username;
-        this.password = password;
-        this.name = name;
-        this.email = email;
-        this.role = role;
-        this.imageUrl = imageUrl;
-        this.provider = provider;
-        this.providerId = providerId;
-    }
 }

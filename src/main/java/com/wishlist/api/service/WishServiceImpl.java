@@ -24,7 +24,8 @@ public class WishServiceImpl implements WishService {
     }
 
     @Override
-    public Wish update(Wish wish) {
+    public Wish update(WishDto wishDto) {
+        Wish wish = wishMapper.fromDto(wishDto);
         return wishRepository.save(wish);
     }
 

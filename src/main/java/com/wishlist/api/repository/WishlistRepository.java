@@ -8,8 +8,12 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import java.util.List;
 import java.util.Optional;
 
-public interface WishlistRepository extends JpaRepository<Wishlist, Long>, JpaSpecificationExecutor<Wishlist> {
+public interface WishlistRepository extends JpaRepository<Wishlist, Long> {
 
-    public List<Wishlist> findWishlistByUserId(Long userId);
-    public Optional<Wishlist> findFirstByUserId(Long userId);
+    default Wishlist getById(long id) {
+        return findById(id).orElseThrow();
+    }
+
+    List<Wishlist> findWishlistByUserId(Long userId);
+    Optional<Wishlist> findFirstByUserId(Long userId);
 }

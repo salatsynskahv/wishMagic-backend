@@ -3,8 +3,9 @@ package com.wishlist.api.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.ToString;
 
-import java.math.BigDecimal;
+import java.util.List;
 
 @Data
 @Entity
@@ -25,8 +26,8 @@ public class Wish {
     @Column(name = "link", nullable = false, length = 255)
     private String link;
 
-    @Column(name = "price", precision = 10, scale = 2)
-    private BigDecimal price;
+    @Column(name = "price")
+    private String price;
 
 
     @Column(name = "comment", nullable = true, length = 255)
@@ -37,10 +38,10 @@ public class Wish {
     @Column(name="imageUrl", nullable = true)
     private String imageUrl;
 
-    @Column(name="likes", nullable = true)
-    private Integer likes;
-
     @JsonIgnore
     @ManyToOne
     private Wishlist wishlist;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "wish")
+    private List<Like> likes;
 }

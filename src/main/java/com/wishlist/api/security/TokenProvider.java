@@ -57,6 +57,7 @@ public class TokenProvider {
                 .claim("email", user.getEmail())
                 .claim("avatarUrl", user.getAvatarUrl())
                 .claim("provider", user.getProviderName())
+                .claim("id", user.getId())
                 .compact();
     }
 

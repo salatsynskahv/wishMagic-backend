@@ -1,19 +1,23 @@
 package com.wishlist.api.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import lombok.Data;
+import lombok.ToString;
 
+@Data
 @Entity
-public class Likes {
+@Table(name = "likes")
+public class Like {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private long id;
 
-    @ManyToOne
-    @JoinColumn(name="userId", referencedColumnName = "id")
-    private User user;
+    private long userId;
 
+    @ToString.Exclude
+    @JsonIgnore
     @ManyToOne
-    @JoinColumn(name="wishId", referencedColumnName = "id")
     private Wish wish;
 }

@@ -8,6 +8,6 @@ import java.util.List;
 public interface WishService {
 
     public Wish create(WishDto wishDto);
-    public Wish update(Wish wish);
+    public Wish update(WishDto wish);
     List<Wish> getListWishesByWishlist(Long wishlistId);
 }

@@ -1,17 +1,16 @@
 package com.wishlist.api.service;
-import com.wishlist.api.model.Wishlist;
+import com.wishlist.api.dto.WishlistDto;
+
 import java.util.List;
-import java.util.Optional;
 
 public interface  WishlistService {
 
-    List<Wishlist> findUsersWishlist(Long userId);
-    Wishlist createDefaultWishlist(Long userId);
+    List<WishlistDto> findUserWishlists(Long userId);
+    WishlistDto createDefaultWishlist(Long userId);
 
-    Wishlist createWishlist(Wishlist wishlist);
+    WishlistDto createWishlist(WishlistDto wishlist);
 
     Boolean userHasWishlist(Long userId);
 
-    Optional<Wishlist> findWishlistById(Long wishlistId);
-
+    WishlistDto getWishlistById(Long wishlistId);
 }

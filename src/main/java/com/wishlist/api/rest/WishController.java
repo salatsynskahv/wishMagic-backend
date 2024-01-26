@@ -31,7 +31,7 @@ public class WishController {
 
     @PatchMapping
     @Operation(security = {@SecurityRequirement(name = BEARER_KEY_SECURITY_SCHEME)})
-    Wish updateWishItem(@RequestBody Wish wish) {
+    Wish updateWishItem(@RequestBody WishDto wish) {
         return this.wishService.update(wish);
     }
 

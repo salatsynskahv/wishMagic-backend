@@ -1,5 +1,7 @@
 package com.wishlist.api.service;
 
+import com.wishlist.api.dto.WishlistDto;
+import com.wishlist.api.mapper.WishlistMapper;
 import com.wishlist.api.model.Wishlist;
 import com.wishlist.api.repository.WishlistRepository;
 import org.springframework.stereotype.Service;
@@ -11,33 +13,38 @@ import java.util.Optional;
 @Service
 public class WishlistServiceImpl implements WishlistService {
 
-    String defaultWishlistName = "My wishlist";
+    private static final String DEFAULT_WISHLIST_NAME = "My wishlist";
 
-    final private WishlistRepository wishlistRepository;
+    private final WishlistRepository wishlistRepository;
+
+    private final WishlistMapper wishlistMapper;
 
 
-    public WishlistServiceImpl(WishlistRepository wishlistRepository) {
+    public WishlistServiceImpl(WishlistRepository wishlistRepository, WishlistMapper wishlistMapper) {
         this.wishlistRepository = wishlistRepository;
+        this.wishlistMapper = wishlistMapper;
     }
 
     @Override
-    public List<Wishlist> findUsersWishlist(Long userId) {
-        List<Wishlist> wishlistByUserId = wishlistRepository.findWishlistByUserId(userId);
-        return wishlistByUserId;
+    public List<WishlistDto> findUserWishlists(Long userId) {
+        List<Wishlist> wishlists = wishlistRepository.findWishlistByUserId(userId);
+        return wishlists.stream().map(wishlistMapper::toDto).toList();
     }
 
-    public Wishlist createDefaultWishlist(Long userId) {
+    public WishlistDto createDefaultWishlist(Long userId) {
         Wishlist wishlist = new Wishlist();
         wishlist.setUserId(userId);
-        wishlist.setTitle(defaultWishlistName);
+        wishlist.setTitle(DEFAULT_WISHLIST_NAME);
         wishlist.setCreatedAt(new Date().toString());
         wishlist.setIsPrivate(false);
-        return this.wishlistRepository.save(wishlist);
+        return wishlistMapper.toDto(wishlistRepository.save(wishlist));
     }
 
     @Override
-    public Wishlist createWishlist(Wishlist wishlist) {
-        return this.wishlistRepository.save(wishlist);
+    public WishlistDto createWishlist(WishlistDto wishlist) {
+        // TODO
+        return null;
+//        return this.wishlistRepository.save(wishlist);
     }
 
     @Override
@@ -46,8 +53,10 @@ public class WishlistServiceImpl implements WishlistService {
     }
 
     @Override
-    public Optional<Wishlist> findWishlistById(Long wishlistId) {
-        return this.wishlistRepository.findById(wishlistId);
+    public WishlistDto getWishlistById(Long wishlistId) {
+        return wishlistMapper.toDto(wishlistRepository.findById(wishlistId).get());
     }
+
+
 
 }

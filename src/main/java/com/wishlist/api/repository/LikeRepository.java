@@ -1,8 +1,7 @@
 package com.wishlist.api.repository;
 
-import com.wishlist.api.model.Likes;
+import com.wishlist.api.model.Like;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface LikesRepository extends JpaRepository<Likes, Long> {
-
+public interface LikeRepository extends JpaRepository<Like, Long> {
 }
