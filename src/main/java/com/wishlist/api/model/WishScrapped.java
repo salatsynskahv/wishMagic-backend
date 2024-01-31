@@ -6,7 +6,7 @@ import lombok.Data;
 @Data
 public class WishScrapped {
 
-    String title;
+    String name;
     String price;
     String imageUrl;
 

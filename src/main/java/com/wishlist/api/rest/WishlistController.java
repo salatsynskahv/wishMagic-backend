@@ -32,4 +32,12 @@ public class WishlistController {
     public WishlistDto getUserWishlistById(@AuthenticationPrincipal CustomUserDetails currentUser, @PathVariable Long id) {
         return wishlistService.getWishlistById(id);
     }
+
+    @Operation(security = {@SecurityRequirement(name = BEARER_KEY_SECURITY_SCHEME)})
+    @PostMapping
+    public WishlistDto create(@RequestBody WishlistDto wishlistDto,  @AuthenticationPrincipal CustomUserDetails currentUser){
+        wishlistDto.setUserId(currentUser.getId());
+        return wishlistService.createWishlist(wishlistDto);
+    }
+
 }

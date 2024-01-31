@@ -14,9 +14,7 @@ import java.util.Optional;
 public class WishlistServiceImpl implements WishlistService {
 
     private static final String DEFAULT_WISHLIST_NAME = "My wishlist";
-
     private final WishlistRepository wishlistRepository;
-
     private final WishlistMapper wishlistMapper;
 
 
@@ -41,10 +39,9 @@ public class WishlistServiceImpl implements WishlistService {
     }
 
     @Override
-    public WishlistDto createWishlist(WishlistDto wishlist) {
-        // TODO
-        return null;
-//        return this.wishlistRepository.save(wishlist);
+    public WishlistDto createWishlist(WishlistDto wishlistDto) {
+        Wishlist wishlist = wishlistMapper.fromDto(wishlistDto);
+        return wishlistMapper.toDto(this.wishlistRepository.save(wishlist));
     }
 
     @Override

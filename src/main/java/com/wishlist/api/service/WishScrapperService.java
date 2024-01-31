@@ -16,7 +16,7 @@ public class WishScrapperService {
         WishScrapped result = new WishScrapped();
         try {
             Document doc = Jsoup.connect(url).get();
-            result.setTitle(doc.title());
+            result.setName(doc.title());
             Elements elementsWithPrice = doc.select("[class*='price']:containsOwn(₴), [class*='price']:containsOwn($), [class*='price']:containsOwn('грн'), span.price-new, span.price");
             String price = elementsWithPrice.text();
             try {
