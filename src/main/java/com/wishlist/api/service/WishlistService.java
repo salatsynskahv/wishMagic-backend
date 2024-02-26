@@ -5,6 +5,8 @@ import java.util.List;
 
 public interface  WishlistService {
 
+
+    List<WishlistDto> findRandom();
     List<WishlistDto> findUserWishlists(Long userId);
     WishlistDto createDefaultWishlist(Long userId);
 
@@ -13,4 +15,6 @@ public interface  WishlistService {
     Boolean userHasWishlist(Long userId);
 
     WishlistDto getWishlistById(Long wishlistId);
+
+    void deleteWishlist(Long wishlistId);
 }

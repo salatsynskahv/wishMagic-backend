@@ -1,5 +1,7 @@
 package com.wishlist.api.security;
 
+import com.wishlist.api.entity.RefreshToken;
+import com.wishlist.api.entity.User;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jws;
@@ -51,15 +53,42 @@ public class TokenProvider {
                 .setIssuer(TOKEN_ISSUER)
                 .setAudience(TOKEN_AUDIENCE)
                 .setSubject(user.getUsername())
+                .claim("id", user.getId())
                 .claim("rol", roles)
                 .claim("name", user.getName())
                 .claim("preferred_username", user.getUsername())
                 .claim("email", user.getEmail())
                 .claim("avatarUrl", user.getAvatarUrl())
                 .claim("provider", user.getProviderName())
-                .claim("id", user.getId())
                 .compact();
     }
+
+    public String generateTokenFromUser(User user) {
+//        List<String> roles = user.getAuthorities()
+//                .stream()
+//                .map(GrantedAuthority::getAuthority)
+//                .collect(Collectors.toList());
+
+        byte[] signingKey = jwtSecret.getBytes();
+
+        return Jwts.builder()
+                .setHeaderParam("typ", TOKEN_TYPE)
+                .signWith(Keys.hmacShaKeyFor(signingKey), SignatureAlgorithm.HS512)
+                .setExpiration(Date.from(ZonedDateTime.now().plusMinutes(jwtExpirationMinutes).toInstant()))
+                .setIssuedAt(Date.from(ZonedDateTime.now().toInstant()))
+                .setId(UUID.randomUUID().toString())
+                .setIssuer(TOKEN_ISSUER)
+                .setAudience(TOKEN_AUDIENCE)
+                .setSubject(user.getUsername())
+                .claim("id", user.getId())
+                .claim("name", user.getName())
+                .claim("preferred_username", user.getUsername())
+                .claim("email", user.getEmail())
+                .claim("avatarUrl", user.getImageUrl())
+                .claim("provider", user.getProviderId())
+                .compact();
+    }
+
 
     public Optional<Jws<Claims>> validateTokenAndGetJws(String token) {
         try {
@@ -71,8 +100,8 @@ public class TokenProvider {
                     .parseClaimsJws(token);
 
             return Optional.of(jws);
-        } catch (ExpiredJwtException exception) {
-            log.error("Request to parse expired JWT : {} failed : {}", token, exception.getMessage());
+//        } catch (ExpiredJwtException exception) {
+//            log.error("Request to parse expired JWT : {} failed : {}", token, exception.getMessage());
         } catch (UnsupportedJwtException exception) {
             log.error("Request to parse unsupported JWT : {} failed : {}", token, exception.getMessage());
         } catch (MalformedJwtException exception) {

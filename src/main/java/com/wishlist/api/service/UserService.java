@@ -1,6 +1,6 @@
 package com.wishlist.api.service;
 
-import com.wishlist.api.model.User;
+import com.wishlist.api.entity.User;
 
 import java.util.List;
 import java.util.Optional;

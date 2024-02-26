@@ -1,4 +1,4 @@
-package com.wishlist.api.model;
+package com.wishlist.api.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;

@@ -1,8 +1,7 @@
 package com.wishlist.api.repository;
 
-import com.wishlist.api.model.User;
+import com.wishlist.api.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 

@@ -1,6 +1,5 @@
 package com.wishlist.api.dto;
 
-import com.wishlist.api.model.Wish;
 import lombok.Data;
 
 import java.util.List;

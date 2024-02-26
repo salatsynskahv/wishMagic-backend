@@ -1,8 +1,7 @@
 package com.wishlist.api.mapper;
 
 import com.wishlist.api.dto.LikeDto;
-import com.wishlist.api.model.Like;
-import com.wishlist.api.repository.UserRepository;
+import com.wishlist.api.entity.Like;
 import com.wishlist.api.repository.WishRepository;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;

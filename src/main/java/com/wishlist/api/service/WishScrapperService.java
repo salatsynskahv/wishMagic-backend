@@ -1,6 +1,6 @@
 package com.wishlist.api.service;
 
-import com.wishlist.api.model.WishScrapped;
+import com.wishlist.api.entity.WishScrapped;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;

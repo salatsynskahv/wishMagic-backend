@@ -1,6 +1,8 @@
 package com.wishlist.api.security.oauth2;
 
+import com.wishlist.api.entity.RefreshToken;
 import com.wishlist.api.security.TokenProvider;
+import com.wishlist.api.service.RefreshTokenService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
@@ -20,6 +22,9 @@ public class CustomAuthenticationSuccessHandler extends SimpleUrlAuthenticationS
 
     private final TokenProvider tokenProvider;
 
+    private final RefreshTokenService refreshTokenService;
+
+
     @Value("${app.oauth2.redirectUri}")
     private String redirectUri;
 
@@ -35,7 +40,13 @@ public class CustomAuthenticationSuccessHandler extends SimpleUrlAuthenticationS
                 determineTargetUrl(request, response, authentication) : redirectUri;
 
         String token = tokenProvider.generate(authentication);
-        targetUrl = UriComponentsBuilder.fromUriString(targetUrl).queryParam("token", token).build().toUriString();
+        RefreshToken refreshToken = refreshTokenService.createRefreshToken(authentication.getName());
+        targetUrl = UriComponentsBuilder.fromUriString(targetUrl)
+                .queryParam("accessToken", token)
+                .queryParam("token", refreshToken.getToken())
+                .build().toUriString();
+//        targetUrl = UriComponentsBuilder.fromUriString(targetUrl).queryParam("accessToken", token).queryParam("token", ).build().toUriString();
+
         getRedirectStrategy().sendRedirect(request, response, targetUrl);
     }
 }

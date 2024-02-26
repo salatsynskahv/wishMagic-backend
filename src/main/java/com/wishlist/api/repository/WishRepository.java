@@ -1,8 +1,7 @@
 package com.wishlist.api.repository;
 
-import com.wishlist.api.model.Wish;
+import com.wishlist.api.entity.Wish;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
 

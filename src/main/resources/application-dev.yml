@@ -6,9 +6,12 @@ spring:
       ddl-auto: update
     show-sql: true
   datasource:
-    url: jdbc:postgresql://${PGHOST}:${PGPORT}/${PGDATABASE}
-    username: ${PGUSER}
-    password: ${PGPASSWORD}
+    url: jdbc:postgresql://localhost:5432/wishlist
+    username: ganna
+    password: ganna
+  sql:
+    init:
+      mode: always
   security:
     oauth2:
       client:
@@ -33,9 +36,9 @@ app:
     refreshExpiration:
       minutes: 120
   oauth2:
-    redirectUri: https://wishmagic-client-i18n-production.up.railway.app/oauth2/redirect
+    redirectUri: http://localhost:3000/oauth2/redirect
   cors:
-    allowed-origins: https://wishmagic-client-i18n-production.up.railway.app
+    allowed-origins: http://localhost:3000
 
 logging:
   level:

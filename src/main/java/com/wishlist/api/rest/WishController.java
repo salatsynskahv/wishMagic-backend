@@ -1,7 +1,7 @@
 package com.wishlist.api.rest;
 
 
-import com.wishlist.api.model.Wish;
+import com.wishlist.api.entity.Wish;
 import com.wishlist.api.dto.WishDto;
 import com.wishlist.api.service.WishService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -13,7 +13,7 @@ import java.util.List;
 import static com.wishlist.api.config.SwaggerConfig.BEARER_KEY_SECURITY_SCHEME;
 
 @RestController
-@RequestMapping("/api/wishItem")
+@RequestMapping("/api/wish")
 public class WishController {
 
     private WishService wishService;
@@ -24,21 +24,26 @@ public class WishController {
 
     @PostMapping
     @Operation(security = {@SecurityRequirement(name = BEARER_KEY_SECURITY_SCHEME)})
-    Wish createWish(@RequestBody WishDto withItem) {
+    public WishDto createWish(@RequestBody WishDto withItem) {
         return this.wishService.create(withItem);
     }
 
 
     @PatchMapping
     @Operation(security = {@SecurityRequirement(name = BEARER_KEY_SECURITY_SCHEME)})
-    Wish updateWishItem(@RequestBody WishDto wish) {
+    public Wish updateWishItem(@RequestBody WishDto wish) {
         return this.wishService.update(wish);
     }
 
 
     @GetMapping("/byWishlist")
-    List<Wish> getWishesByWishlistId(@RequestParam Long wishlistId) {
-        return this.wishService.getListWishesByWishlist(wishlistId);
+    public List<Wish> getWishesByWishlistId(@RequestParam Long wishlistId) {
+        return wishService.getListWishesByWishlist(wishlistId);
+    }
+
+    @DeleteMapping("/{wishId}")
+    public void deleteWish(@PathVariable("wishId") Long wishId){
+        wishService.deleteWish(wishId);
     }
 
 }

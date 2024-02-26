@@ -1,6 +1,6 @@
 package com.wishlist.api.dto;
 
-import com.wishlist.api.model.Wish;
+import com.wishlist.api.entity.Wish;
 
 import java.util.List;
 

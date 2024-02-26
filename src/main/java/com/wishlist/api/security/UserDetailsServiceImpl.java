@@ -1,6 +1,6 @@
 package com.wishlist.api.security;
 
-import com.wishlist.api.model.User;
+import com.wishlist.api.entity.User;
 import com.wishlist.api.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

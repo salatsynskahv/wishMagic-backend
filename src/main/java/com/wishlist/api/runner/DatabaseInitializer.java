@@ -1,17 +1,11 @@
 package com.wishlist.api.runner;
 
-import com.wishlist.api.model.User;
-import com.wishlist.api.security.oauth2.OAuth2Provider;
-import com.wishlist.api.security.WebSecurityConfig;
 import com.wishlist.api.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
-
-import java.util.Arrays;
-import java.util.List;
 
 @Slf4j
 @RequiredArgsConstructor

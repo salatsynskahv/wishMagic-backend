@@ -1,9 +1,7 @@
 package com.wishlist.api.dto;
 
-import com.wishlist.api.model.Like;
 import lombok.Data;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 @Data

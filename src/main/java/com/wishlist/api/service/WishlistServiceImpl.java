@@ -2,13 +2,12 @@ package com.wishlist.api.service;
 
 import com.wishlist.api.dto.WishlistDto;
 import com.wishlist.api.mapper.WishlistMapper;
-import com.wishlist.api.model.Wishlist;
+import com.wishlist.api.entity.Wishlist;
 import com.wishlist.api.repository.WishlistRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class WishlistServiceImpl implements WishlistService {
@@ -21,6 +20,12 @@ public class WishlistServiceImpl implements WishlistService {
     public WishlistServiceImpl(WishlistRepository wishlistRepository, WishlistMapper wishlistMapper) {
         this.wishlistRepository = wishlistRepository;
         this.wishlistMapper = wishlistMapper;
+    }
+
+    @Override
+    public List<WishlistDto> findRandom() {
+        List<Wishlist> wishlists = wishlistRepository.findFirst10By();
+        return wishlists.stream().map(wishlistMapper::toDto).toList();
     }
 
     @Override
@@ -54,6 +59,10 @@ public class WishlistServiceImpl implements WishlistService {
         return wishlistMapper.toDto(wishlistRepository.findById(wishlistId).get());
     }
 
+    @Override
+    public void deleteWishlist(Long wishlistId) {
+         wishlistRepository.deleteById(wishlistId);
+    }
 
 
 }

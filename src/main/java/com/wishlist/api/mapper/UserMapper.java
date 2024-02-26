@@ -1,6 +1,6 @@
 package com.wishlist.api.mapper;
 
-import com.wishlist.api.model.User;
+import com.wishlist.api.entity.User;
 import com.wishlist.api.dto.UserDto;
 import org.mapstruct.Mapper;
 

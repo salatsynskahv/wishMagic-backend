@@ -1,6 +1,6 @@
 package com.wishlist.api.rest;
 
-import com.wishlist.api.model.WishScrapped;
+import com.wishlist.api.entity.WishScrapped;
 import com.wishlist.api.service.UserService;
 import com.wishlist.api.service.WishScrapperService;
 import org.springframework.web.bind.annotation.*;

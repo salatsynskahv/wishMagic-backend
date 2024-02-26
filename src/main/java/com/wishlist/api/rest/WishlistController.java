@@ -26,11 +26,16 @@ public class WishlistController {
     public List<WishlistDto> getUserWishlists(@AuthenticationPrincipal CustomUserDetails currentUser) {
         return wishlistService.findUserWishlists(currentUser.getId());
     }
+    @Operation(security = {@SecurityRequirement(name = BEARER_KEY_SECURITY_SCHEME)})
+    @GetMapping("test")
+    public List<WishlistDto> getRandom() {
+        return wishlistService.findRandom();
+    }
 
     @Operation(security = {@SecurityRequirement(name = BEARER_KEY_SECURITY_SCHEME)})
-    @GetMapping("/{id}")
-    public WishlistDto getUserWishlistById(@AuthenticationPrincipal CustomUserDetails currentUser, @PathVariable Long id) {
-        return wishlistService.getWishlistById(id);
+    @GetMapping("/{wishlistId}")
+    public WishlistDto getUserWishlistById(@PathVariable Long wishlistId) {
+        return wishlistService.getWishlistById(wishlistId);
     }
 
     @Operation(security = {@SecurityRequirement(name = BEARER_KEY_SECURITY_SCHEME)})
@@ -40,4 +45,9 @@ public class WishlistController {
         return wishlistService.createWishlist(wishlistDto);
     }
 
+    @Operation(security = {@SecurityRequirement(name= BEARER_KEY_SECURITY_SCHEME)})
+    @DeleteMapping("/{wishlistId}")
+    public void deleteWishlist(@PathVariable Long wishlistId){
+        wishlistService.deleteWishlist(wishlistId);
+    }
 }

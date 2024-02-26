@@ -1,6 +1,5 @@
-package com.wishlist.api.model;
+package com.wishlist.api.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.ToString;

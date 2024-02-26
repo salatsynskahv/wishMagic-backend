@@ -1,12 +1,10 @@
 package com.wishlist.api.security.oauth2;
 
-import com.wishlist.api.model.User;
-import com.wishlist.api.model.Wishlist;
+import com.wishlist.api.entity.User;
 import com.wishlist.api.security.CustomUserDetails;
 import com.wishlist.api.security.WebSecurityConfig;
 import com.wishlist.api.service.UserService;
 import com.wishlist.api.service.WishlistService;
-import com.wishlist.api.service.WishlistServiceImpl;
 import org.springframework.security.authentication.InternalAuthenticationServiceException;
 import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;
 import org.springframework.security.oauth2.client.userinfo.OAuth2UserRequest;
